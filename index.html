@@ -29,17 +29,17 @@
       </div>
     </section>
 
-    <!-- Coming soon -->
+    <!-- Latest event -->
     <section class="section">
       <div class="container">
         <div class="split">
-          <img src="assets/uploads/triple-threat-league-s2/season-2-poster.jpg" alt="Triple Threat League Season 2 coming soon poster" loading="lazy">
+          <img src="assets/uploads/triple-threat-league-s1/img-0174.jpg" alt="Players on a Pickle.ai partner court" loading="lazy">
           <div>
-            <div class="eyebrow">Coming soon 💙💛</div>
-            <h2>Triple Threat League · Season 2</h2>
-            <p>After a blockbuster Season 1, the winter season is on its way. <b>THE WAIT IS ALMOST OVER!</b></p>
+            <div class="eyebrow">Just wrapped up · 21–22 Nov 2026</div>
+            <h2>Pickle.ai Fest 2026</h2>
+            <p>Two days of pickleball, community and competition. Thank you to every player, volunteer and partner who made the Fest happen.</p>
           <div style="display:flex;gap:.6rem;flex-wrap:wrap">
-            <a class="btn btn--blue" href="tournament.html?id=triple-threat-league-s2">See details</a>
+            <a class="btn btn--blue" href="tournament.html?id=pickle-ai-fest-2026">See highlights</a>
             <a class="btn btn--ghost" href="tel:9620588009">📞 Call 9620588009</a>
           </div>
         </div>
@@ -52,7 +52,7 @@
         <div class="toolbar">
           <div>
             <div class="eyebrow">On the calendar</div>
-            <h2>Upcoming tournaments</h2>
+            <h2 id="upcoming-title">Upcoming tournaments</h2>
           </div>
           <a class="btn btn--blue" href="tournaments.html">All tournaments →</a>
         </div>
@@ -137,6 +137,7 @@
       const upcoming = all.filter((t) => UI.statusOf(t) !== "completed")
         .sort((a, b) => a.startDate.localeCompare(b.startDate));
       const show = upcoming.length ? upcoming.slice(0, 3) : all.slice(0, 3);
+      if (!upcoming.length) document.getElementById("upcoming-title").textContent = "Latest tournaments";
       document.getElementById("upcoming").innerHTML = show.map(UI.tournamentCard).join("") ||
         '<div class="empty">No tournaments yet. <a href="admin.html">Create one</a>.</div>';
 

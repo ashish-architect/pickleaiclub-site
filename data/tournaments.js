@@ -26,36 +26,17 @@
  */
 window.TOURNAMENTS = [
   {
-    id: "triple-threat-league-s2",
-    name: "Triple Threat League — Season 2",
-    series: "Triple Threat League",
-    status: "upcoming",
-    startDate: "2026-12-20",
-    time: "Evening sessions",
-    venue: "AfterrMatch",
-    city: "Greater Noida",
-    format: "Teams of 3 · Pool stage + knockouts",
-    entryFee: "To be announced",
-    prizePool: "Cash prizes + trophies",
+    id: "pickle-ai-fest-2026",
+    name: "Pickle.ai Fest 2026",
+    series: "Pickle.ai Fest",
+    status: "completed",
+    startDate: "2026-11-21",
+    endDate: "2026-11-22",
     contactPhone: "9620588009",
-    summary: "The winter season is coming. Build a team of three and chase the crown.",
+    summary: "Two days of pickleball, community and competition.",
     description:
-      "After a sold-out Season 1, the Triple Threat League returns this winter.\n\nTeams of three battle through a pool stage into knockouts. Every match counts and only one team takes the crown.",
-    categories: ["Team of 3 (mixed skill)"],
-    schedule: [
-      { time: "TBA", item: "Registrations open" },
-      { time: "TBA", item: "Pool draw announced" },
-      { time: "20 Dec", item: "Match day: pools, knockouts and final" }
-    ],
-    rules: [
-      "Each team has 3 registered players",
-      "Pool matches are played to 11 points, win by 2",
-      "Knockouts are played to 15 points, win by 2"
-    ],
-    coverImage: "assets/uploads/triple-threat-league-s2/season-2-poster.jpg",
-    images: [
-      "assets/uploads/triple-threat-league-s2/season-2-poster.jpg"
-    ],
+      "Pickle.ai Fest 2026 brought the Pickle.ai community together for two days of pickleball on 21 and 22 November 2026.",
+    images: [],
     videos: []
   },
   {
