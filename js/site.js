@@ -13,23 +13,41 @@
   };
   window.SITE = SITE;
 
+  /* [href, label] or [href, label, children] for a dropdown */
   const NAV = [
     ["index.html", "Home"],
-    ["tournaments.html", "Tournaments"],
-    ["dupr-nights.html", "DUPR Nights"],
+    ["tournaments.html", "Tournaments", [
+      ["tournaments.html", "All Tournaments"],
+      ["dupr-nights.html", "DUPR Nights"],
+      ["triple-threat-league.html", "Triple Threat League"],
+      ["pickle-ai-league.html", "Pickle.ai League"]
+    ]],
     ["bootcamps.html", "Bootcamps"],
-    ["triple-threat-league.html", "Triple Threat"],
-    ["pickle-ai-league.html", "Pickle.ai League"],
     ["past-tournaments.html", "Past Events"],
     ["about.html", "About Us"],
     ["contact.html", "Contact"]
   ];
 
-  const page = location.pathname.split("/").pop() || "index.html";
+  let page = location.pathname.split("/").pop() || "index.html";
+  if (page === "tournament.html") page = "tournaments.html"; // detail pages light up "Tournaments"
+
+  function navItem([href, label, children]) {
+    if (!children) return `<a href="${href}" class="${href === page ? "active" : ""}">${label}</a>`;
+    const inGroup = href === page || children.some(([h]) => h === page);
+    const sub = children.map(([h, l]) =>
+      `<a href="${h}" role="menuitem" class="${h === page ? "active" : ""}">${l}</a>`).join("");
+    return `
+      <div class="nav-group">
+        <div class="nav-group__head">
+          <a href="${href}" class="${inGroup ? "active" : ""}">${label}</a>
+          <button type="button" class="nav-group__toggle" aria-haspopup="true" aria-expanded="false" aria-label="Show ${label} menu">▾</button>
+        </div>
+        <div class="nav-sub" role="menu">${sub}</div>
+      </div>`;
+  }
 
   function header() {
-    const links = NAV.map(([href, label]) =>
-      `<a href="${href}" class="${href === page ? "active" : ""}">${label}</a>`).join("");
+    const links = NAV.map(navItem).join("");
     return `
       <div class="topbar">🎾 Become a Pickle.ai member and get 10% off tournaments plus exclusive perks.
         <a href="${SITE.registerUrl}" target="_blank" rel="noopener">Register here</a></div>
@@ -100,10 +118,30 @@
     document.body.insertAdjacentHTML("beforeend", footer());
     const toggle = document.querySelector(".nav-toggle");
     const nav = document.querySelector(".nav");
-    toggle.addEventListener("click", () => {
+    // Dropdown groups: ▾ toggles on click/tap; outside click or Esc closes.
+    const groups = [...document.querySelectorAll(".nav-group")];
+    const setOpen = (g, open) => {
+      g.classList.toggle("open", open);
+      g.querySelector(".nav-group__toggle").setAttribute("aria-expanded", String(open));
+    };
+    const closeAll = (except) => groups.forEach((g) => { if (g !== except) setOpen(g, false); });
+    groups.forEach((g) => {
+      g.querySelector(".nav-group__toggle").addEventListener("click", (e) => {
+        e.stopPropagation();
+        closeAll(g);
+        setOpen(g, !g.classList.contains("open"));
+      });
+    });
+
+    toggle.addEventListener("click", (e) => {
+      e.stopPropagation();
       const open = nav.classList.toggle("open");
       toggle.setAttribute("aria-expanded", open);
+      // Opening the mobile menu: expand the section you're currently in.
+      if (open) groups.forEach((g) => setOpen(g, !!g.querySelector(".nav-sub a.active")));
     });
+    document.addEventListener("click", (e) => { if (!e.target.closest(".nav-group, .nav-toggle")) closeAll(); });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeAll(); });
     cookieBanner();
   });
 
