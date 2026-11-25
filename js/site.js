@@ -8,7 +8,8 @@
     address: "H-507 Prateek Laurel, Sector 120, Noida, Uttar Pradesh",
     instagram: "https://www.instagram.com/pickleball.ai",
     facebook: "https://www.facebook.com/",
-    membershipUrl: "membership.html"
+    membershipUrl: "membership.html",
+    registerUrl: "https://mypickleapp.com"
   };
   window.SITE = SITE;
 
@@ -20,6 +21,7 @@
     ["triple-threat-league.html", "Triple Threat"],
     ["pickle-ai-league.html", "Pickle.ai League"],
     ["past-tournaments.html", "Past Events"],
+    ["about.html", "About Us"],
     ["contact.html", "Contact"]
   ];
 
@@ -30,7 +32,7 @@
       `<a href="${href}" class="${href === page ? "active" : ""}">${label}</a>`).join("");
     return `
       <div class="topbar">🎾 Become a Pickle.ai member and get 10% off tournaments plus exclusive perks.
-        <a href="${SITE.membershipUrl}">Register here</a></div>
+        <a href="${SITE.registerUrl}" target="_blank" rel="noopener">Register here</a></div>
       <header class="site-header">
         <div class="container">
           <a class="brand" href="index.html"><img class="brand__logo" src="assets/img/logo.png" alt="Pickle.ai"><span>PICKLE<b>.AI</b></span></a>
@@ -62,6 +64,7 @@
               <li><a href="past-tournaments.html">Past Tournaments</a></li>
             </ul></div>
             <div><h4>Club</h4><ul>
+              <li><a href="about.html">About Us</a></li>
               <li><a href="bootcamps.html">Bootcamps</a></li>
               <li><a href="index.html#venues">Venue Partners</a></li>
               <li><a href="index.html#services">Services</a></li>
