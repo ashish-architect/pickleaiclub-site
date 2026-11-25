@@ -93,7 +93,7 @@
   /* ---------- load / save ---------- */
   const LIST_FIELDS = ["categories", "rules", "partners"];
   function fill(t) {
-    form.reset();
+    HTMLFormElement.prototype.reset.call(form); // form.reset is shadowed by the #reset button
     ["schedule", "results", "stats"].forEach((k) => ($(k).innerHTML = ""));
     for (const el of form.elements) {
       if (!el.name || !(el.name in t)) continue;
@@ -158,27 +158,45 @@
     $("msg").innerHTML = "";
   };
 
-  async function renderDrafts() {
-    const list = (await Store.drafts.all()).sort((a, b) => (b.updatedAt || "").localeCompare(a.updatedAt || ""));
-    $("drafts").innerHTML = list.length ? list.map((t) => `
+  const isPublished = (id) => (window.TOURNAMENTS || []).some((x) => x.id === id);
+  const row = (t, buttons) => `
       <div class="row">
         <div><b>${esc(t.name)}</b><br><small style="color:var(--muted)">${UI.fmtDate(t.startDate)} · ${(t.images || []).length} photos · ${(t.videos || []).length} videos</small></div>
         <div style="display:flex;gap:.3rem">
           <a class="btn btn--sm btn--blue" href="tournament.html?id=${encodeURIComponent(t.id)}" target="_blank">View</a>
           <button class="btn btn--sm btn--ghost" style="color:var(--navy)" data-edit="${esc(t.id)}">Edit</button>
-          <button class="btn btn--sm btn--danger" data-del="${esc(t.id)}" aria-label="Delete">×</button>
+          ${buttons || ""}
         </div>
-      </div>`).join("") : '<p style="color:var(--muted)">No drafts yet.</p>';
+      </div>`;
+
+  async function renderDrafts() {
+    const list = (await Store.drafts.all()).sort((a, b) => (b.updatedAt || "").localeCompare(a.updatedAt || ""));
+    const draftIds = new Set(list.map((t) => t.id));
+    $("drafts").innerHTML = list.length ? list.map((t) => row(t,
+      isPublished(t.id)
+        ? `<button class="btn btn--sm btn--danger" data-del="${esc(t.id)}" title="Discard changes">Undo</button>`
+        : `<button class="btn btn--sm btn--danger" data-del="${esc(t.id)}" aria-label="Delete">×</button>`)).join("")
+      : '<p style="color:var(--muted)">No drafts yet.</p>';
+    const pub = [...(window.TOURNAMENTS || [])].sort((a, b) => (b.startDate || "").localeCompare(a.startDate || ""));
+    $("published").innerHTML = pub.map((t) => draftIds.has(t.id)
+      ? row(t, '<span class="badge badge--local" style="align-self:center">Edited</span>')
+      : row(t)).join("") || '<p style="color:var(--muted)">None yet.</p>';
   }
-  $("drafts").addEventListener("click", async (e) => {
+  const onListClick = async (e) => {
     const ed = e.target.dataset.edit, del = e.target.dataset.del;
     if (ed) location.href = `admin.html?edit=${encodeURIComponent(ed)}`;
-    if (del && confirm("Delete this draft? This can't be undone.")) {
+    if (!del) return;
+    const msg = isPublished(del)
+      ? "Discard your unpublished changes to this tournament? The live version stays as it is."
+      : "Delete this draft? This can't be undone.";
+    if (confirm(msg)) {
       await Store.drafts.remove(del);
       if (editingId === del) $("reset").click();
       renderDrafts();
     }
-  });
+  };
+  $("drafts").addEventListener("click", onListClick);
+  $("published").addEventListener("click", onListClick);
 
   $("export").onclick = async (e) => {
     e.target.disabled = true;

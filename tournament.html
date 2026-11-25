@@ -110,8 +110,12 @@
                 <div style="display:flex;gap:.5rem;flex-wrap:wrap">
                   <a class="btn btn--sm" style="background:#25d366;color:#fff" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent(t.name + " " + location.href)}">WhatsApp</a>
                   <button class="btn btn--sm btn--blue" id="copy">Copy link</button>
-                  ${t._local ? `<a class="btn btn--sm btn--ghost" style="color:var(--navy)" href="admin.html?edit=${encodeURIComponent(t.id)}">Edit</a>` : ""}
                 </div>
+              </div>
+              <div class="panel">
+                <h2>Organiser</h2>
+                <p style="color:var(--muted);font-size:.9rem">Update the details, results, photos or videos for this tournament.</p>
+                <a class="btn btn--blue" style="width:100%;justify-content:center" href="admin.html?edit=${encodeURIComponent(t.id)}">✏️ Edit tournament</a>
               </div>
             </aside>
           </div>
