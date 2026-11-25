@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DUPR Nights | Pickle.ai</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <main>
+    <section class="hero hero--page">
+      <div class="container">
+        <div class="tagline">Rated play under the lights</div>
+        <h1>Get your game on with DUPR Nights</h1>
+        <p>Evening tournaments where every match counts towards your DUPR rating, with cash prizes and vouchers to play for.</p>
+      </div>
+    </section>
+    <section class="section"><div class="container">
+      <div class="grid">
+        <div class="card"><div class="card__body"><div class="card__icon">📈</div><h3>Every match is rated</h3><p>Results are submitted to DUPR, so your rating grows with every night you play.</p></div></div>
+        <div class="card"><div class="card__body"><div class="card__icon">🌙</div><h3>Evening format</h3><p>Indoor courts and a fast schedule that fits around the working day.</p></div></div>
+        <div class="card"><div class="card__body"><div class="card__icon">💰</div><h3>Prizes & vouchers</h3><p>Past editions have offered ₹40,000 in cash prizes and partner vouchers.</p></div></div>
+      </div>
+    </div></section>
+    <section class="section section--alt"><div class="container"><div class="eyebrow">Sessions</div><h2>DUPR Night events</h2><div class="grid" id="series-list" data-series="DUPR Nights"></div></div></section>
+    <section class="section section--alt"><div class="container"><div class="eyebrow">Gallery</div><h2>Moments</h2><div class="gallery" id="series-gallery"></div></div></section>
+  </main>
+  <div class="lightbox" id="lightbox"><button class="lb-close" aria-label="Close">×</button><button class="lb-prev" aria-label="Previous">‹</button><img alt=""><button class="lb-next" aria-label="Next">›</button></div>
+  <script src="data/tournaments.js"></script>
+  <script src="js/site.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/lightbox.js"></script>
+  <script src="js/series.js"></script>
+</body>
+</html>

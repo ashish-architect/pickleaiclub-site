@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pickle.ai — Play. Compete. Connect.</title>
+  <meta name="description" content="Pickle.ai Club: pickleball tournaments, leagues, DUPR nights, bootcamps and venue partners across Noida, NCR and Uttar Pradesh.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="tagline">Play. Compete. Connect.</div>
+        <h1>PICKLE<b>.AI</b></h1>
+        <p>Our vision is to build a connected pickleball network across Uttar Pradesh, bringing players, venues and tournaments together on one platform.</p>
+        <div class="actions">
+          <a class="btn btn--primary" href="tournaments.html">Explore tournaments</a>
+          <a class="btn btn--ghost" href="membership.html">Become a member</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><strong>1000+</strong><span>Players in our network</span></div>
+          <div class="stat"><strong>90+</strong><span>Societies reached</span></div>
+          <div class="stat"><strong>4</strong><span>Venue partners</span></div>
+          <div class="stat"><strong>15+</strong><span>Events hosted</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Coming soon -->
+    <section class="section">
+      <div class="container">
+        <div class="cta">
+          <div>
+            <div class="eyebrow" style="color:var(--navy)">Coming soon 💙💛</div>
+            <h2>Triple Threat League · Season 2</h2>
+            <p style="margin:0">After a blockbuster Season 1, the winter season is on its way. <b>THE WAIT IS ALMOST OVER!</b></p>
+          </div>
+          <div style="display:flex;gap:.6rem;flex-wrap:wrap">
+            <a class="btn btn--blue" href="tournament.html?id=triple-threat-league-s2">See details</a>
+            <a class="btn btn--ghost" href="tel:9620588009">📞 Call 9620588009</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Upcoming tournaments (dynamic) -->
+    <section class="section section--alt">
+      <div class="container">
+        <div class="toolbar">
+          <div>
+            <div class="eyebrow">On the calendar</div>
+            <h2>Upcoming tournaments</h2>
+          </div>
+          <a class="btn btn--blue" href="tournaments.html">All tournaments →</a>
+        </div>
+        <div class="grid" id="upcoming"></div>
+      </div>
+    </section>
+
+    <!-- Pickle.ai League promo -->
+    <section class="section section--dark">
+      <div class="container">
+        <div class="eyebrow">Pickle.ai League · 11 October 2026</div>
+        <h2>One league. One crown. One champion.</h2>
+        <p class="lead">Age-group doubles for every level of competitor. Gather your squad and step onto the court.</p>
+        <div class="grid" style="margin-top:2rem">
+          <div class="card promo"><h3>Compete with your age group</h3><p>Build your team. Own the court. Chase the crown.</p></div>
+          <div class="card promo"><h3>Community + Competition</h3><p>One League. One Crown. One Champion.</p></div>
+          <div class="card promo"><h3>No friends on the court</h3><p>Only competitors.</p></div>
+        </div>
+        <p style="margin-top:2rem"><a class="btn btn--primary" href="pickle-ai-league.html">View more</a></p>
+      </div>
+    </section>
+
+    <!-- Moments gallery (dynamic, from tournament images) -->
+    <section class="section" id="moments-section">
+      <div class="container">
+        <div class="eyebrow">Gallery</div>
+        <h2>Tournament moments</h2>
+        <div class="gallery" id="moments"></div>
+      </div>
+    </section>
+
+    <!-- Venues -->
+    <section class="section section--alt" id="venues">
+      <div class="container">
+        <div class="eyebrow">Where we play</div>
+        <h2>Our venue partners</h2>
+        <div class="grid" id="venue-grid"></div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section class="section" id="services">
+      <div class="container">
+        <div class="center">
+          <div class="eyebrow">What we do</div>
+          <h2>Our services</h2>
+          <p class="lead">Everything a pickleball community needs, from the first booking to the final point.</p>
+        </div>
+        <div class="grid" style="margin-top:2rem">
+          <div class="card"><div class="card__body"><div class="card__icon">🏟️</div><h3>Court booking & rentals</h3><p>Reserve courts instantly at partner venues with flexible slots, morning to late night.</p></div></div>
+          <div class="card"><div class="card__body"><div class="card__icon">🏆</div><h3>Event organiser</h3><p>End-to-end tournament management: sign-ups, draws, scheduling, referees and live results.</p></div></div>
+          <div class="card"><div class="card__body"><div class="card__icon">🪪</div><h3>Player registration</h3><p>An annual membership for ₹500/year with a player profile, early access, 10% off tournaments, coaching discounts and goodies.</p><a class="btn btn--blue btn--sm" href="membership.html">Join now</a></div></div>
+          <div class="card"><div class="card__body"><div class="card__icon">⚡</div><h3>Technology & platform</h3><p>A tournament system that automates registrations, fixtures, live scoring and player updates.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section class="section section--dark">
+      <div class="container center">
+        <div class="eyebrow">Let's pickleball</div>
+        <h2>Host an event or bring a bootcamp to your society</h2>
+        <p class="lead">Schools, societies, clubs and corporates: talk to us about demo sessions, leagues and tournaments.</p>
+        <p style="margin-top:1.5rem;display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+          <a class="btn btn--primary" href="contact.html">Contact us</a>
+          <a class="btn btn--ghost" href="https://wa.me/919620588009" target="_blank" rel="noopener">WhatsApp us</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <div class="lightbox" id="lightbox"><button class="lb-close" aria-label="Close">×</button><button class="lb-prev" aria-label="Previous">‹</button><img alt=""><button class="lb-next" aria-label="Next">›</button></div>
+
+  <script src="data/tournaments.js"></script>
+  <script src="data/venues.js"></script>
+  <script src="js/site.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/lightbox.js"></script>
+  <script>
+    (async () => {
+      const all = await Store.list();
+      const upcoming = all.filter((t) => UI.statusOf(t) !== "completed")
+        .sort((a, b) => a.startDate.localeCompare(b.startDate));
+      const show = upcoming.length ? upcoming.slice(0, 3) : all.slice(0, 3);
+      document.getElementById("upcoming").innerHTML = show.map(UI.tournamentCard).join("") ||
+        '<div class="empty">No tournaments yet. <a href="admin.html">Create one</a>.</div>';
+
+      const imgs = all.flatMap((t) => t.images || []).slice(0, 12);
+      if (imgs.length) Lightbox.renderGallery(document.getElementById("moments"), imgs);
+      else document.getElementById("moments-section").classList.add("hidden");
+
+      document.getElementById("venue-grid").innerHTML = window.VENUES.map((v) => `
+        <article class="card">
+          <div class="venue__head"><h3>${UI.esc(v.name)}</h3><small>${UI.esc(v.area)}</small></div>
+          <div class="card__body">
+            <ul class="meta"><li>💰 ${UI.esc(v.price)}</li><li>🕒 ${UI.esc(v.hours)}</li><li>🎾 ${UI.esc(v.courts)}</li></ul>
+            <a class="btn btn--blue btn--sm" href="tel:${v.phone}">Book now</a>
+          </div>
+        </article>`).join("");
+    })();
+  </script>
+</body>
+</html>

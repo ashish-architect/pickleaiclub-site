@@ -1,0 +1,8 @@
+node_modules/
+.DS_Store
+Thumbs.db
+*.zip
+.claude/settings.local.json
+.shots/
+.shots/
+.shotsprof/

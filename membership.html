@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Membership | Pickle.ai</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <main>
+    <section class="hero hero--page"><div class="container">
+      <div class="tagline">₹500 / year</div><h1>Become a Member</h1>
+      <p>Join the Pickle.ai player network and unlock exclusive benefits across Noida and NCR.</p>
+    </div></section>
+    <section class="section"><div class="container contact-grid">
+      <div>
+        <h2>Member benefits</h2>
+        <ul class="contact-list">
+          <li><span class="card__icon">🪪</span><div><b>Player profile</b><br>Your own profile in the Pickle.ai network.</div></li>
+          <li><span class="card__icon">⏩</span><div><b>Early access</b><br>Register for events before anyone else.</div></li>
+          <li><span class="card__icon">🏷️</span><div><b>10% off</b><br>On all Pickle.ai tournaments.</div></li>
+          <li><span class="card__icon">⭐</span><div><b>Member-only events</b><br>Socials, clinics and exclusive play nights.</div></li>
+          <li><span class="card__icon">🎁</span><div><b>Coaching discounts &amp; goodies</b><br>Partner perks and member kits.</div></li>
+          <li><span class="card__icon">🌐</span><div><b>Networking</b><br>Connect with players across Noida and NCR.</div></li>
+        </ul>
+      </div>
+      <form class="panel form" id="member-form">
+        <h2>Register</h2>
+        <div class="form-row"><label>Full name<input name="name" required></label><label>Phone<input name="phone" type="tel" required pattern="[0-9+ ]{10,14}"></label></div>
+        <div class="form-row"><label>Email<input name="email" type="email"></label><label>City / Society<input name="city"></label></div>
+        <div class="form-row"><label>DUPR rating <small>(optional)</small><input name="dupr"></label>
+          <label>Level<select name="level"><option>Beginner</option><option>Intermediate</option><option>Advanced</option></select></label></div>
+        <button class="btn btn--primary" type="submit">Send registration on WhatsApp</button>
+        <p class="notice">Your details open in WhatsApp so our team can confirm your membership and share payment details.</p>
+      </form>
+    </div></section>
+  </main>
+  <script src="js/site.js"></script>
+  <script src="js/forms.js"></script>
+  <script>bindWhatsAppForm("member-form", "New Pickle.ai membership registration");</script>
+</body>
+</html>

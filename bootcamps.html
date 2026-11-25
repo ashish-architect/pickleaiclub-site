@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootcamps | Pickle.ai</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <main>
+    <section class="hero hero--page"><div class="container">
+      <div class="tagline">Learn · Play · Grow</div><h1>Pickleball Bootcamps</h1>
+      <p>We run bootcamps for schools, societies and clubs across Uttar Pradesh. Contact us for a demo session, and let's pickleball!</p>
+      <div class="actions"><a class="btn btn--primary" href="contact.html?subject=Bootcamp%20demo">Request a demo session</a></div>
+    </div></section>
+    <section class="section"><div class="container">
+      <div class="grid">
+        <div class="card"><div class="card__body"><div class="card__icon">🏫</div><h3>Schools</h3><p>Fun intro sessions and coaching programmes for students of every age.</p></div></div>
+        <div class="card"><div class="card__body"><div class="card__icon">🏢</div><h3>Societies</h3><p>Weekend camps in your society, with equipment and coaches provided.</p></div></div>
+        <div class="card"><div class="card__body"><div class="card__icon">🤝</div><h3>Clubs & corporates</h3><p>Team-building sessions and skill clinics for groups.</p></div></div>
+      </div>
+    </div></section>
+    <section class="section section--alt"><div class="container">
+      <div class="eyebrow">Bootcamps across the state</div><h2>Recent camps</h2>
+      <div class="grid" id="camps"></div>
+    </div></section>
+  </main>
+  <script src="js/site.js"></script>
+  <script>
+    const CAMPS = [
+      ["28 Jul 2024", "Hyde Park, Sector 78, Noida", "60+ kids and adults took part. Local AOA volunteers became UPA points of contact."],
+      ["22 Apr 2024", "Cleo County", "A strong turnout. Participants formed a Cleo pickleball group to build a team."],
+      ["28 Mar 2024", "Mahagun Maestro, Sector 50", "15+ kids and 10+ adults. Thanks to AOA VP Ramita ji."],
+      ["18 Feb 2024", "Gaur Grandeur", "25+ kids and 20+ adults. Thanks to AOA President Govind ji."],
+      ["14 Dec 2023", "Eldeco Amantran", "25+ kids and 10+ adults picked up tips from experienced players."],
+      ["18 Nov 2023", "RG Residency", "55+ residents took part in drills and friendly games."],
+      ["28 Oct 2023", "Cleo County", "Many attendees signed up for the 1st State Pickleball Championship."],
+      ["18 Oct 2023", "Amrapali Zodiac", "50+ residents attended. Nearby societies asked to host their own camps."]
+    ];
+    document.getElementById("camps").innerHTML = CAMPS.map(([d, p, s]) => `
+      <article class="card"><div class="card__body"><div class="eyebrow">${d}</div><h3>${p}</h3><p>${s}</p></div></article>`).join("");
+  </script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tournament | Pickle.ai</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <main id="app"><section class="section"><div class="container"><p>Loading…</p></div></section></main>
+  <div class="lightbox" id="lightbox"><button class="lb-close" aria-label="Close">×</button><button class="lb-prev" aria-label="Previous">‹</button><img alt=""><button class="lb-next" aria-label="Next">›</button></div>
+
+  <script src="data/tournaments.js"></script>
+  <script src="js/site.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/lightbox.js"></script>
+  <script>
+    (async () => {
+      const { esc, dateRange, badge, paragraphs, youtubeId, statusOf } = UI;
+      const id = new URLSearchParams(location.search).get("id");
+      const t = id && await Store.find(id);
+      const app = document.getElementById("app");
+
+      if (!t) {
+        app.innerHTML = `<section class="section"><div class="container empty">
+          <h2>Tournament not found</h2><p>It may have been removed or the link is wrong.</p>
+          <a class="btn btn--blue" href="tournaments.html">Browse tournaments</a></div></section>`;
+        return;
+      }
+      document.title = `${t.name} | Pickle.ai`;
+      const cover = t.coverImage || (t.images || [])[0];
+      const upcoming = statusOf(t) !== "completed";
+
+      const video = (v) => {
+        const src = typeof v === "string" ? v : v.src;
+        const yt = youtubeId(src);
+        if (yt) return `<div class="video"><iframe src="https://www.youtube.com/embed/${yt}" title="Video" allowfullscreen loading="lazy"></iframe></div>`;
+        const vimeo = String(src).match(/vimeo\.com\/(\d+)/);
+        if (vimeo) return `<div class="video"><iframe src="https://player.vimeo.com/video/${vimeo[1]}" title="Video" allowfullscreen loading="lazy"></iframe></div>`;
+        return `<div class="video"><video src="${esc(src)}" controls preload="metadata" playsinline></video></div>`;
+      };
+
+      const facts = [
+        ["Date", dateRange(t)], ["Time", t.time], ["Venue", t.venue], ["City", t.city],
+        ["Format", t.format], ["Entry fee", t.entryFee], ["Prize pool", t.prizePool],
+        ["Register by", t.registrationDeadline && UI.fmtDate(t.registrationDeadline)]
+      ].filter(([, v]) => v);
+
+      app.innerHTML = `
+        <section class="detail-hero" style="${cover ? `--cover:url('${esc(cover)}')` : ""}">
+          <div class="container">
+            ${badge(t)} ${t._local ? '<span class="badge badge--local">Draft (only on this browser)</span>' : ""}
+            <div class="eyebrow" style="color:var(--ball);margin-top:1rem">${esc(t.series || "Tournament")}</div>
+            <h1>${esc(t.name)}</h1>
+            <ul class="meta">
+              <li>📅 ${dateRange(t)}${t.time ? " · " + esc(t.time) : ""}</li>
+              ${t.venue ? `<li>📍 ${esc(t.venue)}${t.city ? ", " + esc(t.city) : ""}</li>` : ""}
+              ${t.prizePool ? `<li>🏆 ${esc(t.prizePool)}</li>` : ""}
+            </ul>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="container detail-layout">
+            <div>
+              ${t.stats && t.stats.length ? `<div class="panel"><div class="podium">${t.stats.map((s) =>
+                `<div><strong>${esc(s.value)}</strong>${esc(s.label)}</div>`).join("")}</div></div>` : ""}
+
+              <div class="panel">
+                <h2>About the tournament</h2>
+                ${t.summary ? `<p><b>${esc(t.summary)}</b></p>` : ""}
+                ${paragraphs(t.description) || "<p>Details coming soon.</p>"}
+              </div>
+
+              ${t.categories && t.categories.length ? `<div class="panel"><h2>Categories</h2>
+                <div class="tags">${t.categories.map((c) => `<span class="tag">${esc(c)}</span>`).join("")}</div></div>` : ""}
+
+              ${t.schedule && t.schedule.length ? `<div class="panel"><h2>Schedule</h2><table class="schedule">
+                ${t.schedule.map((s) => `<tr><td>${esc(s.time)}</td><td>${esc(s.item)}</td></tr>`).join("")}</table></div>` : ""}
+
+              ${t.results && t.results.length ? `<div class="panel"><h2>Results 🏆</h2>
+                ${t.results.map((r) => `<h3 style="margin-top:1rem">${esc(r.category)}</h3><div class="podium">
+                  ${r.winner ? `<div>🥇 Champions<strong>${esc(r.winner)}</strong></div>` : ""}
+                  ${r.runnerUp ? `<div>🥈 Runners-up<strong>${esc(r.runnerUp)}</strong></div>` : ""}
+                  ${r.third ? `<div>🥉 Third<strong>${esc(r.third)}</strong></div>` : ""}</div>`).join("")}</div>` : ""}
+
+              ${t.rules && t.rules.length ? `<div class="panel"><h2>Rules</h2><ul>${t.rules.map((r) => `<li>${esc(r)}</li>`).join("")}</ul></div>` : ""}
+
+              ${t.images && t.images.length ? `<div class="panel"><h2>Photo gallery</h2><div class="gallery" id="gallery"></div></div>` : ""}
+
+              ${t.videos && t.videos.length ? `<div class="panel"><h2>Videos</h2><div class="videos">${t.videos.map(video).join("")}</div></div>` : ""}
+
+              ${t.partners && t.partners.length ? `<div class="panel"><h2>Partners & sponsors</h2>
+                <div class="tags">${t.partners.map((p) => `<span class="tag">${esc(p)}</span>`).join("")}</div></div>` : ""}
+            </div>
+
+            <aside class="sticky">
+              <div class="panel">
+                <h2>Key details</h2>
+                <ul class="facts">${facts.map(([k, v]) => `<li><span>${k}</span><span>${esc(v)}</span></li>`).join("")}</ul>
+                ${upcoming && t.registrationUrl ? `<a class="btn btn--primary" style="width:100%;justify-content:center" href="${esc(t.registrationUrl)}" target="_blank" rel="noopener">Register now</a>` : ""}
+                ${upcoming && !t.registrationUrl ? `<a class="btn btn--primary" style="width:100%;justify-content:center" href="https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hi, I'd like to register for " + t.name)}" target="_blank" rel="noopener">Register on WhatsApp</a>` : ""}
+                <a class="btn btn--ghost" style="width:100%;justify-content:center;margin-top:.6rem;color:var(--navy)" href="tel:${esc(t.contactPhone || SITE.phone)}">📞 ${esc(t.contactPhone || SITE.phone)}</a>
+                ${t.mapUrl ? `<a class="btn btn--ghost" style="width:100%;justify-content:center;margin-top:.6rem;color:var(--navy)" href="${esc(t.mapUrl)}" target="_blank" rel="noopener">🗺️ Open in Maps</a>` : ""}
+                ${t.address ? `<p style="color:var(--muted);font-size:.9rem;margin-top:1rem">${esc(t.address)}</p>` : ""}
+              </div>
+              <div class="panel">
+                <h2>Share</h2>
+                <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+                  <a class="btn btn--sm" style="background:#25d366;color:#fff" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent(t.name + " " + location.href)}">WhatsApp</a>
+                  <button class="btn btn--sm btn--blue" id="copy">Copy link</button>
+                  ${t._local ? `<a class="btn btn--sm btn--ghost" style="color:var(--navy)" href="admin.html?edit=${encodeURIComponent(t.id)}">Edit</a>` : ""}
+                </div>
+              </div>
+            </aside>
+          </div>
+        </section>`;
+
+      if (t.images && t.images.length) Lightbox.renderGallery(document.getElementById("gallery"), t.images);
+      document.getElementById("copy").onclick = (e) => {
+        navigator.clipboard.writeText(location.href).then(() => (e.target.textContent = "Copied ✓"));
+      };
+    })();
+  </script>
+</body>
+</html>

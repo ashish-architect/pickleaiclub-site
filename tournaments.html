@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tournaments | Pickle.ai</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <main>
+    <section class="hero hero--page">
+      <div class="container">
+        <div class="tagline">Compete</div>
+        <h1>Tournaments</h1>
+        <p>Every Pickle.ai tournament, league and DUPR night, past and upcoming, in one place.</p>
+        <div class="actions"><a class="btn btn--primary" href="admin.html">+ Create a tournament</a></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="toolbar">
+          <div class="chips" id="status-chips">
+            <button class="chip active" data-status="all">All</button>
+            <button class="chip" data-status="upcoming">Upcoming</button>
+            <button class="chip" data-status="live">Live</button>
+            <button class="chip" data-status="completed">Completed</button>
+          </div>
+          <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+            <select id="series" class="search" style="min-width:200px"><option value="">All series</option></select>
+            <input id="q" class="search" type="search" placeholder="Search name, venue, city…">
+          </div>
+        </div>
+        <div class="grid" id="list"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="data/tournaments.js"></script>
+  <script src="js/site.js"></script>
+  <script src="js/store.js"></script>
+  <script>
+    (async () => {
+      const all = await Store.list();
+      const params = new URLSearchParams(location.search);
+      const state = { status: params.get("status") || "all", series: params.get("series") || "", q: "" };
+
+      const seriesSel = document.getElementById("series");
+      [...new Set(all.map((t) => t.series).filter(Boolean))].sort().forEach((s) =>
+        seriesSel.insertAdjacentHTML("beforeend", `<option>${UI.esc(s)}</option>`));
+      seriesSel.value = state.series;
+
+      function render() {
+        const q = state.q.toLowerCase();
+        const rows = all.filter((t) =>
+          (state.status === "all" || UI.statusOf(t) === state.status) &&
+          (!state.series || t.series === state.series) &&
+          (!q || [t.name, t.venue, t.city, t.series, t.summary].join(" ").toLowerCase().includes(q)));
+        document.getElementById("list").innerHTML = rows.map(UI.tournamentCard).join("") ||
+          '<div class="empty" style="grid-column:1/-1">No tournaments match your filters.</div>';
+        document.querySelectorAll("#status-chips .chip").forEach((c) =>
+          c.classList.toggle("active", c.dataset.status === state.status));
+      }
+      document.getElementById("status-chips").addEventListener("click", (e) => {
+        if (e.target.dataset.status) { state.status = e.target.dataset.status; render(); }
+      });
+      seriesSel.onchange = () => { state.series = seriesSel.value; render(); };
+      document.getElementById("q").oninput = (e) => { state.q = e.target.value; render(); };
+      render();
+    })();
+  </script>
+</body>
+</html>

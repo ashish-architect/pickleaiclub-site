@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact | Pickle.ai</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <main>
+    <section class="hero hero--page"><div class="container">
+      <div class="tagline">Get in touch</div><h1>Contact Us</h1>
+      <p>Tournaments, bootcamps, court bookings or partnerships: we'd love to hear from you.</p>
+    </div></section>
+    <section class="section"><div class="container contact-grid">
+      <ul class="contact-list">
+        <li><span class="card__icon">📞</span><div><b>Call</b><br><a href="tel:9620588009">9620588009</a></div></li>
+        <li><span class="card__icon">💬</span><div><b>WhatsApp</b><br><a href="https://wa.me/919620588009" target="_blank" rel="noopener">Chat with us</a></div></li>
+        <li><span class="card__icon">✉️</span><div><b>Email</b><br><a href="mailto:info@pickleaiclub.com">info@pickleaiclub.com</a></div></li>
+        <li><span class="card__icon">📍</span><div><b>Address</b><br>H-507 Prateek Laurel, Sector 120, Noida, Uttar Pradesh</div></li>
+        <li><span class="card__icon">📸</span><div><b>Instagram</b><br><a href="https://www.instagram.com/pickleball.ai" target="_blank" rel="noopener">@pickleball.ai</a></div></li>
+      </ul>
+      <form class="panel form" id="contact-form">
+        <h2>Send a message</h2>
+        <div class="form-row"><label>Name<input name="name" required></label><label>Email<input name="email" type="email" required></label></div>
+        <label>Subject<input name="subject" id="subject"></label>
+        <label>Message<textarea name="message" required></textarea></label>
+        <div style="display:flex;gap:.6rem;flex-wrap:wrap">
+          <button class="btn btn--primary" type="submit">Send via WhatsApp</button>
+          <button class="btn btn--blue" type="button" id="by-email">Send via email</button>
+        </div>
+      </form>
+    </div></section>
+  </main>
+  <script src="js/site.js"></script>
+  <script src="js/forms.js"></script>
+  <script>
+    const s = new URLSearchParams(location.search).get("subject");
+    if (s) document.getElementById("subject").value = s;
+    bindWhatsAppForm("contact-form", "New enquiry from website");
+    document.getElementById("by-email").onclick = () => {
+      const f = document.getElementById("contact-form");
+      if (!f.reportValidity()) return;
+      const d = Object.fromEntries(new FormData(f));
+      location.href = `mailto:${SITE.email}?subject=${encodeURIComponent(d.subject || "Website enquiry")}&body=${encodeURIComponent(d.message + "\n\n- " + d.name + " (" + d.email + ")")}`;
+    };
+  </script>
+</body>
+</html>

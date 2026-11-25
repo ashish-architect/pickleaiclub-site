@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Create Tournament | Pickle.ai</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <main>
+    <section class="hero hero--page"><div class="container">
+      <div class="tagline">Organiser</div><h1 id="page-title">Create Tournament</h1>
+      <p>Add the tournament details, upload photos and videos, then preview the page. Drafts are saved in this browser. Use <b>Export</b> to publish them to the website.</p>
+    </div></section>
+
+    <section class="section"><div class="container detail-layout">
+      <form id="form" class="form" novalidate>
+        <fieldset>
+          <legend>Basics</legend>
+          <div class="form" style="gap:1rem">
+            <label>Tournament name *<input name="name" required placeholder="e.g. Winter Smash Open 2026"></label>
+            <div class="form-row">
+              <label>Series<input name="series" list="series-list" placeholder="e.g. DUPR Nights"></label>
+              <label>Status<select name="status"><option value="">Auto (from dates)</option><option value="upcoming">Upcoming</option><option value="live">Live</option><option value="completed">Completed</option></select></label>
+            </div>
+            <datalist id="series-list"><option>DUPR Nights</option><option>Triple Threat League</option><option>Pickle.ai League</option><option>State Championship</option><option>Open Tournament</option></datalist>
+            <label>Short summary <small>(shown on cards)</small><input name="summary" maxlength="160"></label>
+            <label>Full description <small>(leave a blank line between paragraphs)</small><textarea name="description" rows="6"></textarea></label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>When &amp; where</legend>
+          <div class="form-row">
+            <label>Start date *<input name="startDate" type="date" required></label>
+            <label>End date<input name="endDate" type="date"></label>
+            <label>Time<input name="time" placeholder="7:30 AM onwards"></label>
+          </div>
+          <div class="form-row" style="margin-top:1rem">
+            <label>Venue<input name="venue" placeholder="AfterrMatch"></label>
+            <label>City<input name="city" placeholder="Greater Noida"></label>
+          </div>
+          <div class="form-row" style="margin-top:1rem">
+            <label>Address<input name="address"></label>
+            <label>Google Maps link<input name="mapUrl" type="url"></label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Registration &amp; prizes</legend>
+          <div class="form-row">
+            <label>Format<input name="format" placeholder="Doubles · Pools + knockouts"></label>
+            <label>Entry fee<input name="entryFee" placeholder="₹1200 per team"></label>
+            <label>Prize pool<input name="prizePool" placeholder="₹40,000 + trophies"></label>
+          </div>
+          <div class="form-row" style="margin-top:1rem">
+            <label>Registration link <small>(Google Form, Courtly…)</small><input name="registrationUrl" type="url"></label>
+            <label>Register by<input name="registrationDeadline" type="date"></label>
+            <label>Contact phone<input name="contactPhone" type="tel" placeholder="9620588009"></label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Categories, rules &amp; partners</legend>
+          <label>Categories <small>(one per line)</small><textarea name="categories" rows="3" placeholder="Men's Doubles&#10;Women's Doubles&#10;Mixed 40+"></textarea></label>
+          <label style="margin-top:1rem">Rules <small>(one per line)</small><textarea name="rules" rows="3"></textarea></label>
+          <label style="margin-top:1rem">Partners / sponsors <small>(one per line)</small><textarea name="partners" rows="2"></textarea></label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Schedule</legend>
+          <div id="schedule"></div>
+          <button type="button" class="btn btn--ghost btn--sm" style="color:var(--navy)" data-add="schedule">+ Add schedule item</button>
+        </fieldset>
+
+        <fieldset>
+          <legend>Results</legend>
+          <div id="results"></div>
+          <button type="button" class="btn btn--ghost btn--sm" style="color:var(--navy)" data-add="results">+ Add category result</button>
+        </fieldset>
+
+        <fieldset>
+          <legend>Highlight stats</legend>
+          <div id="stats"></div>
+          <button type="button" class="btn btn--ghost btn--sm" style="color:var(--navy)" data-add="stats">+ Add stat (e.g. Teams: 12)</button>
+        </fieldset>
+
+        <fieldset>
+          <legend>Cover image</legend>
+          <div class="dropzone" data-drop="cover">📷 Drop a cover image here or <u>browse</u><input type="file" accept="image/*" hidden></div>
+          <div class="thumbs" id="cover-thumbs"></div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Photo gallery</legend>
+          <div class="dropzone" data-drop="images">🖼️ Drop photos here or <u>browse</u> (multiple allowed)<input type="file" accept="image/*" multiple hidden></div>
+          <div class="repeat-row repeat-row--2" style="margin-top:.8rem"><input id="image-url" placeholder="…or paste an image URL"><button type="button" class="btn btn--blue btn--sm" id="add-image-url">Add</button></div>
+          <div class="thumbs" id="images-thumbs"></div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Videos</legend>
+          <div class="dropzone" data-drop="videos">🎬 Drop video files here (MP4/WebM) or <u>browse</u><input type="file" accept="video/*" multiple hidden></div>
+          <div class="repeat-row repeat-row--2" style="margin-top:.8rem"><input id="video-url" placeholder="…or paste a YouTube / Vimeo / MP4 URL"><button type="button" class="btn btn--blue btn--sm" id="add-video-url">Add</button></div>
+          <div class="thumbs" id="videos-thumbs"></div>
+          <p class="notice" style="margin-top:.8rem">Tip: large videos are best uploaded to YouTube and linked here. That keeps the website fast and the git repo small.</p>
+        </fieldset>
+
+        <div id="msg"></div>
+        <div style="display:flex;gap:.6rem;flex-wrap:wrap">
+          <button class="btn btn--primary" type="submit">💾 Save &amp; preview</button>
+          <button class="btn btn--ghost" type="button" id="reset" style="color:var(--navy)">New tournament</button>
+        </div>
+      </form>
+
+      <aside class="sticky">
+        <div class="panel admin-list">
+          <h2>Your drafts</h2>
+          <div id="drafts"><p style="color:var(--muted)">No drafts yet.</p></div>
+        </div>
+        <div class="panel">
+          <h2>Publish</h2>
+          <p style="color:var(--muted)">This downloads a zip containing <code>data/tournaments.js</code> and <code>assets/uploads/…</code>. Unzip it into the website folder, replacing the existing files, then commit and push.</p>
+          <button class="btn btn--blue" id="export" style="width:100%;justify-content:center">⬇️ Export for publishing</button>
+        </div>
+      </aside>
+    </div></section>
+  </main>
+
+  <script src="data/tournaments.js"></script>
+  <script src="js/site.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
