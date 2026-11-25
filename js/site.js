@@ -33,7 +33,7 @@
         <a href="${SITE.membershipUrl}">Register here</a></div>
       <header class="site-header">
         <div class="container">
-          <a class="brand" href="index.html"><span class="brand__ball"></span><span>PICKLE<b>.AI</b></span></a>
+          <a class="brand" href="index.html"><img class="brand__logo" src="assets/img/logo.png" alt="Pickle.ai"><span>PICKLE<b>.AI</b></span></a>
           <button class="nav-toggle" aria-label="Menu" aria-expanded="false">☰</button>
           <nav class="nav">${links}<a class="btn btn--primary btn--sm" href="admin.html">+ Create Tournament</a></nav>
         </div>
@@ -46,7 +46,7 @@
         <div class="container">
           <div class="cols">
             <div>
-              <a class="brand" href="index.html"><span class="brand__ball"></span><span>PICKLE<b>.AI</b></span></a>
+              <a class="brand" href="index.html"><img class="brand__logo" src="assets/img/logo.png" alt="Pickle.ai"><span>PICKLE<b>.AI</b></span></a>
               <p>Play. Compete. Connect. We're building a connected pickleball network across Uttar Pradesh.</p>
               <div class="socials">
                 <a href="${SITE.facebook}" target="_blank" rel="noopener" aria-label="Facebook">f</a>

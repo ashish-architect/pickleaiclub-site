@@ -11,7 +11,7 @@
 </head>
 <body>
   <main>
-    <section class="hero">
+    <section class="hero" style="background-image:linear-gradient(120deg, rgba(11,31,58,.9), rgba(18,48,90,.65)), url('assets/img/hero-court.jpg')">
       <div class="container">
         <div class="tagline">Play. Compete. Connect.</div>
         <h1>PICKLE<b>.AI</b></h1>
@@ -32,12 +32,12 @@
     <!-- Coming soon -->
     <section class="section">
       <div class="container">
-        <div class="cta">
+        <div class="split">
+          <img src="assets/uploads/triple-threat-league-s2/season-2-poster.jpg" alt="Triple Threat League Season 2 coming soon poster" loading="lazy">
           <div>
-            <div class="eyebrow" style="color:var(--navy)">Coming soon 💙💛</div>
+            <div class="eyebrow">Coming soon 💙💛</div>
             <h2>Triple Threat League · Season 2</h2>
-            <p style="margin:0">After a blockbuster Season 1, the winter season is on its way. <b>THE WAIT IS ALMOST OVER!</b></p>
-          </div>
+            <p>After a blockbuster Season 1, the winter season is on its way. <b>THE WAIT IS ALMOST OVER!</b></p>
           <div style="display:flex;gap:.6rem;flex-wrap:wrap">
             <a class="btn btn--blue" href="tournament.html?id=triple-threat-league-s2">See details</a>
             <a class="btn btn--ghost" href="tel:9620588009">📞 Call 9620588009</a>
@@ -140,12 +140,13 @@
       document.getElementById("upcoming").innerHTML = show.map(UI.tournamentCard).join("") ||
         '<div class="empty">No tournaments yet. <a href="admin.html">Create one</a>.</div>';
 
-      const imgs = all.flatMap((t) => t.images || []).slice(0, 12);
+      const imgs = all.flatMap((t) => (t.images || []).slice(0, 4)).slice(0, 12);
       if (imgs.length) Lightbox.renderGallery(document.getElementById("moments"), imgs);
       else document.getElementById("moments-section").classList.add("hidden");
 
       document.getElementById("venue-grid").innerHTML = window.VENUES.map((v) => `
         <article class="card">
+          ${v.image ? `<img class="venue__img" src="${UI.esc(v.image)}" alt="${UI.esc(v.name)} courts" loading="lazy">` : ""}
           <div class="venue__head"><h3>${UI.esc(v.name)}</h3><small>${UI.esc(v.area)}</small></div>
           <div class="card__body">
             <ul class="meta"><li>💰 ${UI.esc(v.price)}</li><li>🕒 ${UI.esc(v.hours)}</li><li>🎾 ${UI.esc(v.courts)}</li></ul>

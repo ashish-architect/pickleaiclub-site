@@ -47,3 +47,10 @@ You can also edit `data/tournaments.js` by hand. The field reference is at the t
 ## Deploy
 
 Any static host works: GitHub Pages, Netlify, Vercel or Cloudflare Pages. Upload or point the host at the repo root; there's nothing to build.
+
+## Images
+
+- `assets/img/`: logo, home hero, venue photos (`venues/`) and bootcamp photos (`bootcamps/`)
+- `assets/uploads/<tournament-id>/`: each tournament's cover and gallery, listed in `data/tournaments.js`
+
+Photos were copied from the old pickleaiclub.com site and resized to 1600px wide.

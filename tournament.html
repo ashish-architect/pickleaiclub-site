@@ -48,7 +48,7 @@
       ].filter(([, v]) => v);
 
       app.innerHTML = `
-        <section class="detail-hero" style="${cover ? `--cover:url('${esc(cover)}')` : ""}">
+        <section class="detail-hero" style="${cover ? `background-image:linear-gradient(0deg, rgba(11,31,58,.95) 10%, rgba(11,31,58,.45)), url('${esc(cover)}')` : ""}">
           <div class="container">
             ${badge(t)} ${t._local ? '<span class="badge badge--local">Draft (only on this browser)</span>' : ""}
             <div class="eyebrow" style="color:var(--ball);margin-top:1rem">${esc(t.series || "Tournament")}</div>

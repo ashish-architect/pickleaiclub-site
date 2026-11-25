@@ -52,7 +52,10 @@ window.TOURNAMENTS = [
       "Pool matches are played to 11 points, win by 2",
       "Knockouts are played to 15 points, win by 2"
     ],
-    images: [],
+    coverImage: "assets/uploads/triple-threat-league-s2/season-2-poster.jpg",
+    images: [
+      "assets/uploads/triple-threat-league-s2/season-2-poster.jpg"
+    ],
     videos: []
   },
   {
@@ -74,7 +77,17 @@ window.TOURNAMENTS = [
       { category: "Men's 30+ Doubles", winner: "Apoorv Vats & Pritam Sharma", runnerUp: "Gourav Soni & Rakesh Gupta" },
       { category: "Men's Open Doubles", winner: "Apoorv Vats & Piyush Walia", runnerUp: "Anmol Jain & Jaideep Singh" }
     ],
-    images: [],
+    coverImage: "assets/uploads/pickle-ai-league-2026/img-0345.jpg",
+    images: [
+      "assets/uploads/pickle-ai-league-2026/img-0345.jpg",
+      "assets/uploads/pickle-ai-league-2026/228cd30c-6255-4d7a-884b-5eadba19dde7.jpg",
+      "assets/uploads/pickle-ai-league-2026/c50da363-03a3-46d3-be06-902d58b0c529.jpg",
+      "assets/uploads/pickle-ai-league-2026/dacaf2cb-4415-4709-9fab-8cdd309dd71c.jpg",
+      "assets/uploads/pickle-ai-league-2026/img-0441.jpg",
+      "assets/uploads/pickle-ai-league-2026/img-0466.jpg",
+      "assets/uploads/pickle-ai-league-2026/img-0472.jpg",
+      "assets/uploads/pickle-ai-league-2026/img-0502.jpg"
+    ],
     videos: []
   },
   {
@@ -93,7 +106,21 @@ window.TOURNAMENTS = [
       "DUPR Nights are evening events where every match counts towards your DUPR rating.\n\nPlay rated games, meet the community and compete for cash prizes and vouchers.",
     categories: ["DUPR-rated Doubles"],
     stats: [{ label: "Prize pool", value: "₹40K" }],
-    images: [],
+    coverImage: "assets/uploads/dupr-night-pickleplay-aug-2026/img-9814.jpg",
+    images: [
+      "assets/uploads/dupr-night-pickleplay-aug-2026/img-9814.jpg",
+      "assets/uploads/dupr-night-pickleplay-aug-2026/58c7a5a0-fe67-4f72-90d7-acb7f13ccdef.jpg",
+      "assets/uploads/dupr-night-pickleplay-aug-2026/618891ae-ee57-4e90-be4f-b143baf1b3b7.jpg",
+      "assets/uploads/dupr-night-pickleplay-aug-2026/66ae2a80-bfcc-40a1-b396-5701ea3799fe.jpg",
+      "assets/uploads/dupr-night-pickleplay-aug-2026/7cbd65c4-7059-42d4-8127-cd8ce8ddd034.jpg",
+      "assets/uploads/dupr-night-pickleplay-aug-2026/8015e9b2-a16d-4d02-842e-20d2908e96a1.jpg",
+      "assets/uploads/dupr-night-pickleplay-aug-2026/89684d62-6afc-4727-a60e-1ffc8eeb89be.jpg",
+      "assets/uploads/dupr-night-pickleplay-aug-2026/edf65be0-f77d-4ae5-a364-8cf04eea77a0.jpg",
+      "assets/uploads/dupr-night-pickleplay-aug-2026/img-9526.jpg",
+      "assets/uploads/dupr-night-pickleplay-aug-2026/poster-categories.jpg",
+      "assets/uploads/dupr-night-pickleplay-aug-2026/poster-prizes.jpg",
+      "assets/uploads/dupr-night-pickleplay-aug-2026/untitled-23-august-2026-at-10-34-02.jpg"
+    ],
     videos: []
   },
   {
@@ -124,7 +151,18 @@ window.TOURNAMENTS = [
       }
     ],
     partners: ["Courtly (Platform Partner)", "AfterrMatch (Event Partner & Venue)"],
-    images: [],
+    coverImage: "assets/uploads/triple-threat-league-s1/1e7bf1e7-23d3-4247-a730-434f4bd96d6e.jpg",
+    images: [
+      "assets/uploads/triple-threat-league-s1/1e7bf1e7-23d3-4247-a730-434f4bd96d6e.jpg",
+      "assets/uploads/triple-threat-league-s1/6a4315c6-6b57-4207-9315-ff65c522d6d0.jpg",
+      "assets/uploads/triple-threat-league-s1/d59bd466-e0a7-4391-a314-3780a3a4f732.jpg",
+      "assets/uploads/triple-threat-league-s1/img-0174.jpg",
+      "assets/uploads/triple-threat-league-s1/img-0175.jpg",
+      "assets/uploads/triple-threat-league-s1/img-0203.jpg",
+      "assets/uploads/triple-threat-league-s1/img-0236.jpg",
+      "assets/uploads/triple-threat-league-s1/img-0237.jpg",
+      "assets/uploads/triple-threat-league-s1/img-0239.jpg"
+    ],
     videos: []
   },
   {
@@ -142,7 +180,10 @@ window.TOURNAMENTS = [
       "Organised by the Uttar Pradesh Pickleball Association, the 1st UP State Pickleball Tournament drew more than 200 player registrations.\n\nPickleball in Noida started with residents of Prateek Laurel, Sector 120, where 30–40 players formed the Challengers Club. Bootcamps followed at Prateek, Amrapali Zodiac and Cleo County. An MOU with NOFAA then brought the game to 90+ high-rise societies.\n\nThe mission: build 1000+ skilled pickleball players across the state.",
     stats: [{ label: "Registrations", value: "200+" }],
     partners: ["SL", "Apartment Times", "DVonk", "FirstVista", "Mr Bhature", "S R College", "Franklin", "Prakash Hospital"],
-    images: [],
+    coverImage: "assets/uploads/up-state-championship-2023/group-photo.jpg",
+    images: [
+      "assets/uploads/up-state-championship-2023/group-photo.jpg"
+    ],
     videos: []
   }
 ];
