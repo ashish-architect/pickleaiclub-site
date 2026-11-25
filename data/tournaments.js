@@ -145,26 +145,5 @@ window.TOURNAMENTS = [
       "assets/uploads/triple-threat-league-s1/img-0239.jpg"
     ],
     videos: []
-  },
-  {
-    id: "up-state-championship-2023",
-    name: "1st UP State Pickleball Championship",
-    series: "State Championship",
-    status: "completed",
-    startDate: "2023-11-05",
-    time: "7:30 AM onwards",
-    venue: "Raghav Global School",
-    city: "Noida",
-    format: "Open state-level championship",
-    summary: "The first state-level pickleball championship in Uttar Pradesh, with 200+ registrations.",
-    description:
-      "Organised by the Uttar Pradesh Pickleball Association, the 1st UP State Pickleball Tournament drew more than 200 player registrations.\n\nPickleball in Noida started with residents of Prateek Laurel, Sector 120, where 30–40 players formed the Challengers Club. Bootcamps followed at Prateek, Amrapali Zodiac and Cleo County. An MOU with NOFAA then brought the game to 90+ high-rise societies.\n\nThe mission: build 1000+ skilled pickleball players across the state.",
-    stats: [{ label: "Registrations", value: "200+" }],
-    partners: ["SL", "Apartment Times", "DVonk", "FirstVista", "Mr Bhature", "S R College", "Franklin", "Prakash Hospital"],
-    coverImage: "assets/uploads/up-state-championship-2023/group-photo.jpg",
-    images: [
-      "assets/uploads/up-state-championship-2023/group-photo.jpg"
-    ],
-    videos: []
   }
 ];
